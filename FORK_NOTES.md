@@ -12,11 +12,12 @@ product configs (`productIotMap.json` includes `twunby`), codepush data, htmx.
 |---|---|---|
 | PyJWT 2.13.0 → 2.15.0 | upstream renovate branch `renovate/pypi-pyjwt-vulnerability` (security) | Pending security fix not in main yet |
 | cryptography 50.0.0 → 50.0.2 | patch release, `uv lock --upgrade-package cryptography` | Patch-level update; only this package changed in `uv.lock` |
+| multidict 6.7.1 → 6.9.1 | `uv lock --upgrade-package multidict` | Security fix (PYSEC-2026-4244, found by `pip-audit` on the runtime deps); used by aiohttp; only this package changed in `uv.lock` |
 
 Deliberately **not** taken: `renovate/python-dependencies` (bumps amqtt 0.11 → 0.12, a breaking
 upgrade upstream is handling in `feature/amqtt-012-upgrade`).
 
-Tests: `uv run pytest` → 350 passed (2026-10-14).
+Tests: `uv run pytest` → 350 passed (2026-10-16). `pip-audit` on the runtime deps: no known vulnerabilities left (2026-10-16).
 
 ## Known risk for this robot
 Ecovacs firmware from mid-2025 on verifies server certificates (see upstream discussion #90 and
